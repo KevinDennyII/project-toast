@@ -1,0 +1,21 @@
+import React from "react";
+
+function useKeyDown(key, callback){
+
+  React.useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === key) {
+        //function call triggered by event
+        callback();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [key, callback]);
+
+}
+
+export default useKeyDown;
